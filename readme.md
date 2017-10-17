@@ -8,7 +8,7 @@
  開啟UART通訊埠巨集函式Function  
  簡介：呼叫本巨集，以開啟編號Com_number的UART串列通訊埠。  
  - 輸入變數：
-  - COM_number : PC COM PORT編號  
+   - COM_number : PC COM PORT編號  
  - 回傳結果：  
    - Port : 已開啟UART通訊埠之必要參數集合，存放於Port 型態之變數集合。
    - error : 錯誤代碼
@@ -20,40 +20,40 @@
  關閉UART通訊埠巨集函式Function  
  簡介：呼叫本巨集函式以關閉佔用變數集合Port之UART通訊埠。  
  - 輸入變數：
-  - Port : 由Port變數集合所代表之已開啟UART通訊埠。
+   - Port : 由Port變數集合所代表之已開啟UART通訊埠。
  - 回傳結果：
-  - error : 回傳錯誤代碼
-    - 0 : 已完成關閉Port變數集合所代表之UART通訊埠。
-    - 1 :  傳輸中關閉
+   - error : 回傳錯誤代碼
+     - 0 : 已完成關閉Port變數集合所代表之UART通訊埠。
+     - 1 :  傳輸中關閉
 
 ### [data,error] = REMO_get(Port,Type,Bytes)
  由UART通訊埠讀回資料function  
  簡介：呼叫本巨集函式由Port 指定之UART通訊埠讀回DataType 所指定型態之資料。  
  - 輸入變數：
-  - Port : 由Port變數集合所代表之已開啟UART通訊埠。
-  - Type : 欲讀回之資料型態。可用之資料型態詳見DataType 表。
+   - Port : 由Port變數集合所代表之已開啟UART通訊埠。
+   - Type : 欲讀回之資料型態。可用之資料型態詳見DataType 表。
  - 回傳結果：
-  - data  : 讀回資料矩陣。
-  - error : 回傳錯誤代碼
-    - 0 : 成功。
-    - 1 :標頭封包錯誤。
-    - 2 :接收Bytes與資料大小相異。
-    - 3 : 檢查碼錯誤。通訊失敗。
-    - 4 : 資料傳輸逾時
+   - data  : 讀回資料矩陣。
+   - error : 回傳錯誤代碼
+     - 0 : 成功。
+     - 1 :標頭封包錯誤。
+     - 2 :接收Bytes與資料大小相異。
+     - 3 : 檢查碼錯誤。通訊失敗。
+     - 4 : 資料傳輸逾時
 
 ### [error] = REMO_put(Port, Type, Bytes, data)
  由UART通訊埠送出資料function  
  簡介：呼叫本巨集函式由Port 指定之UART通訊埠送出DataType 所指定型態之資料。  
  - 輸入變數：
-  - Port  : 由Port變數集合所代表之已開啟UART通訊埠。
-  - DataType : 欲送出之資料型態。可用之資料型態詳見DataType 表。
-  - Bytes : 待發送資料Bytes數。
-  - data  : 待發送資料矩陣。
+   - Port  : 由Port變數集合所代表之已開啟UART通訊埠。
+   - DataType : 欲送出之資料型態。可用之資料型態詳見DataType 表。
+   - Bytes : 待發送資料Bytes數。
+   - data  : 待發送資料矩陣。
  - 回傳結果：
-  - error : 回傳錯誤代碼
-    - 0 : 成功。
-    - 1 : Bytes大於32bytes無法通訊。
-    - 2 : 資料傳輸逾時
+   - error : 回傳錯誤代碼
+     - 0 : 成功。
+     - 1 : Bytes大於32bytes無法通訊。
+     - 2 : 資料傳輸逾時
 
 #### Type 資料型態對應表  
 | 代碼 | 使用資料型態 | 說明 | AVR-C語言變數型態 |
@@ -67,36 +67,37 @@
 | 6   | uint32  | 32 bit 正整數型態 | unsigned long int、uint32 |
 | 7   | uint64  | 64 bit 正整數型態 | uint64 |
 | 8   | float32 | 32 bit 浮點數型態 | float、double |
-| 9   | float64 | 64 bit 浮點數型態 | 無 |
+| 9   | float64 | 64 bit 浮點數型態 | 無 |  
+
 (AVR只提供32bit浮點數型態，float及double皆為32bit)
 
 ### [Data_struct, error] = REMOForm_get(Port,'FormatString')
  由UART通訊埠讀回指定格式之資料結構內容  
  簡介：呼叫本巨集函式由Port 指定之UART通訊埠讀回FormatString 所指定型態之資料結構內容。
  - 輸入變數：
-  - Port : 由Port變數集合所代表之已開啟UART通訊埠。
-  - FormatString : 欲讀回之資料結構組織字串。可用之資料型態詳見DataType 表。
+   - Port : 由Port變數集合所代表之已開啟UART通訊埠。
+   - FormatString : 欲讀回之資料結構組織字串。可用之資料型態詳見DataType 表。
  - 回傳結果：
-  - Data_struct : 讀回資料結構內容。其內容由多個欄位資料組成，每欄名稱依先後順序(從1開始)加上其欄位型態為名，例如第2欄為整數，其欄名為f2i16,又如第1欄 為char, 其欄名為f1i8。
-  - error : 回傳錯誤代碼
-    - 0 : 成功。
-    - 1 :標頭封包錯誤。
-    - 2 :接收Bytes與資料大小相異。
-    - 3 : 檢查碼錯誤。通訊失敗。
-    - 4 : 資料傳輸逾時
+   - Data_struct : 讀回資料結構內容。其內容由多個欄位資料組成，每欄名稱依先後順序(從1開始)加上其欄位型態為名，例如第2欄為整數，其欄名為f2i16,又如第1欄 為char, 其欄名為f1i8。
+   - error : 回傳錯誤代碼
+     - 0 : 成功。
+     - 1 :標頭封包錯誤。
+     - 2 :接收Bytes與資料大小相異。
+     - 3 : 檢查碼錯誤。通訊失敗。
+     - 4 : 資料傳輸逾時
 
 ### [error] = REMOForm_put(Port, 'FormatString',  Data_struct)
 由UART通訊埠送出指定格式之資料結構內容  
 簡介：呼叫本巨集函式由Port 指定之UART通訊埠送出FormatString 所指定型態之資料結構內容。
 - 輸入變數：
- - Port : 由Port變數集合所代表之已開啟UART通訊埠。
- - FormatString : 欲送出之資料結構組織字串。可用之資料型態詳見DataType 表。
- - Data_struct : 欲送出資料結構內容。
+  - Port : 由Port變數集合所代表之已開啟UART通訊埠。
+  - FormatString : 欲送出之資料結構組織字串。可用之資料型態詳見DataType 表。
+  - Data_struct : 欲送出資料結構內容。
 - 回傳結果：
- - error : 回傳錯誤代碼
-  - 0 : 成功。
-  - 1 :  FormatString錯誤
-  - 2 : 資料傳輸逾時
+  - error : 回傳錯誤代碼
+    - 0 : 成功。
+    - 1 :  FormatString錯誤
+    - 2 : 資料傳輸逾時
 
 #### FormatString 說明
 　　由資料代碼及筆數所組成之字串，其中每一欄位，代表依總資料型態，由**Type 資料型態對應表**中的代碼表示，後接英文字母"`x`"及一個數字指其筆數。形態文字代碼。各欄間以"`,`"隔開。
@@ -112,7 +113,8 @@
  | ui32 | uint32  | 32 bit 正整數型態 | unsigned long int、uint32 |
  | ui64 | uint64  | 64 bit 正整數型態 | uint64 |
  | f32  | float32 | 32 bit 浮點數型態 | float、double |
- | f64  | float64 | 64 bit 浮點數型態 | 無 |
+ | f64  | float64 | 64 bit 浮點數型態 | 無 |  
+
 (AVR只提供32bit浮點數型態，float及double皆為32bit)
 
 ##### 使用範例：
