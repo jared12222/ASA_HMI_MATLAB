@@ -1,4 +1,4 @@
-function [data,FormatString,error] = REMO_Structure_get(Port,Bytes)
+function [data,FormatString,error] = REMO_FORM_get(Port,Bytes)
 
 error = 0;
 CheckSum = 0;

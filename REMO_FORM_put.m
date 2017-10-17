@@ -1,4 +1,4 @@
-function [error] = REMO_Structure_put(Port,FormatString,Bytes,data)
+function [error] = REMO_FORM_put(Port,FormatString,Bytes,data)
 
 error = 0;
 CheckSum = 0;
